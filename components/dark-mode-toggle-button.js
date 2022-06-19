@@ -14,6 +14,7 @@ export default function DarkModeToggleMode(){
               bg-gray-300
               hover:bg-gray-50 
               dark:bg-slate-500
+              dark:text-slate-400
               hover:text-orange-500
               dark:hover:text-yellow-100
               "
