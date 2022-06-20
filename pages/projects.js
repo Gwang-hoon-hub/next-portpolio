@@ -2,7 +2,11 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import { TOKEN, DATABASE_ID } from "../config";
 
-export default function Products(){
+export default function Products({ projects }) {
+    
+    // 클라이언트 쪽에서 보이는 부분
+    console.log(projects);
+
     return(
             <Layout>
                 <Head>
@@ -10,7 +14,12 @@ export default function Products(){
                     <meta name="description" content="Go Funcking Coding!" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                <h1>프로젝트!</h1>
+            <h1>프로젝트! : {projects.length}</h1>
+            {projects.results.map((aProject) => (
+                <h1>{aProject.properties.Name.title[0].plain_text}</h1>
+            ))}
+
+            
             </Layout>
         );
     }
@@ -26,18 +35,31 @@ export async function getStaticProps() {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${TOKEN}`
         },
-        body: JSON.stringify({page_size: 100})
+      body: JSON.stringify({
+          sorts: [
+              {
+                  "property": "Name",
+                  "direction": "ascending"
+            }  
+          ],
+          page_size: 100
+      })
     };
 
     const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options)
 
     const projects = await res.json()
 
-    console.log(result)
+    console.log(projects);
 
-    const porjextIds = projects.results.map
+    const projectNames = projects.results.map((aProject) => (
+        aProject.properties.Name.title[0].plain_text
+    ))
+
+    // 서버 쪽에서 보이는 부분
+    console.log(`projectIdNames : ${projectNames}`);
 
   return {
-    props: {}, // will be passed to the page component as props
+    props: {projects}, // will be passed to the page component as props
   }
 }
