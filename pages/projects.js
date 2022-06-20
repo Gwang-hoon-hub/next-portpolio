@@ -1,11 +1,12 @@
 import Layout from "../components/layout";
 import Head from "next/head";
 import { TOKEN, DATABASE_ID } from "../config";
+import ProjectItem from "../components/projects/project-item";
 
 export default function Products({ projects }) {
     
     // 클라이언트 쪽에서 보이는 부분
-    console.log(projects);
+    console.log("클라이언트" + projects);
 
     return(
             <Layout>
@@ -14,12 +15,13 @@ export default function Products({ projects }) {
                     <meta name="description" content="Go Funcking Coding!" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-            <h1>프로젝트! : {projects.length}</h1>
+            <h1>프로젝트! :
+                 <span className="pl-4 text-blue-500">{projects.results.length}</span>
+            </h1>
             {projects.results.map((aProject) => (
-                <h1>{aProject.properties.Name.title[0].plain_text}</h1>
+                <ProjectItem key={aProject.id} data={aProject} />
             ))}
 
-            
             </Layout>
         );
     }
@@ -57,7 +59,7 @@ export async function getStaticProps() {
     ))
 
     // 서버 쪽에서 보이는 부분
-    console.log(`projectIdNames : ${projectNames}`);
+    console.log(`projectIdNames : 다시 + ${projectNames}`);
 
   return {
     props: {projects}, // will be passed to the page component as props
