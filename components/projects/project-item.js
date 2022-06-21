@@ -44,7 +44,7 @@ export default function ProjectItem({ data }) {
             <div className="p-4 flex flex-col">
 
                 <h1 className="text-2xl font-bold">{title}</h1>
-                <h2 className="mt-4 text-xl">설명 : {description}</h2>
+                <h2 className="mt-4 text-xl">{description}</h2>
                 <div className="mt-2 mb-2">
                     <a className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-yellow-500 w-30 text-black"
                     href={githubLing}>Github Link</a>
