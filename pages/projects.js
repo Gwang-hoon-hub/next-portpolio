@@ -10,27 +10,22 @@ export default function Products({ projects }) {
 
     return(
             <Layout>
-            <div className="flex flex-col items-center justify-center min-h-screen px-6 py-24 mb-10">
-                <Head>
-                    <title>PangHoon Portpolio</title>
-                    <meta name="description" content="Go Funcking Coding!" />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head>
-                <h1 className="text-4xl font-bold sm:text-6xl">프로젝트! :
-                    <span className="pl-4 text-blue-500">{projects.results.length}</span>
-                </h1>
+                <div className="flex flex-col items-center justify-center min-h-screen px-6 py-24 mb-10">
+                    <Head>
+                        <title>PangHoon Portpolio</title>
+                        <meta name="description" content="Go Funcking Coding!" />
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
+                    {/* <h1 className="text-4xl font-bold sm:text-6xl">프로젝트! :
+                        <span className="pl-4 text-blue-500">{projects.results.length}</span>
+                    </h1> */}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-8 m-6">
-                    {projects.results.map((aProject) => (
-                        <ProjectItem key={aProject.id} data={aProject} />
-                    ))}
+                    <div className="grid grid-cols-1 md:grid-cols-3 py-10 gap-8 m-6">
+                        {projects.results.map((aProject) => (
+                            <ProjectItem key={aProject.id} data={aProject} />
+                        ))}
+                    </div>
                 </div>
-            </div>
-            
-            
-
-            
-
             </Layout>
         );
     }
